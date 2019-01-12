@@ -8,8 +8,8 @@
 “time”<br>
 “goPush/fcm_functions”<br>
 )</p>
-<p>const fcmServerKey  = “YOUR_FCM_SERVER_KEY”  //Your FCM server key<br>
-const pemFilePath  = “YOUR_PEM_PATH” //Pem file path<br>
+<p>const fcmServerKey  = “your_fcm_server_key”  //Your FCM server key<br>
+const pemFilePath  = “your_pem_file_path” //Pem file path<br>
 const apnsMode = 2  //1 -Sandbox , 2-Production</p>
 <p>func main()  {</p>
 <pre><code>fmt.Println(&quot;---------------------------------APNS PUSH START--------------------------------------&quot;)
@@ -47,7 +47,7 @@ apnsPayload.Aps.Badge = 1
 //Set APNS header, only ApnsTopic is mandatory
 apnsHeader := apns_functions.ApnsHeader{
     ApnsPriority:&quot;10&quot;,
-    ApnsTopic:&quot;com.slideshowmaker.photoeditor&quot;, //Mandatory
+    ApnsTopic:&your_apns_topic&quot;, //Mandatory
     ApnsExpiration:time.Now(),
 }
 
