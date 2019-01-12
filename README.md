@@ -47,7 +47,7 @@ apnsPayload.Aps.Badge = 1
 //Set APNS header, only ApnsTopic is mandatory
 apnsHeader := apns_functions.ApnsHeader{
     ApnsPriority:&quot;10&quot;,
-    ApnsTopic:&your_apns_topic&quot;, //Mandatory
+    ApnsTopic:&quot;your_apns_topic&quot;, //Mandatory
     ApnsExpiration:time.Now(),
 }
 
