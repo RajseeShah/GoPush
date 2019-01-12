@@ -8,9 +8,9 @@
 “time”<br>
 “goPush/fcm_functions”<br>
 )</p>
-<p>const fcmServerKey  = “your_fcm_server_key”  //Your FCM server key<br>
-const pemFilePath  = “your_pem_file_path” //Pem file path<br>
-const apnsMode = 2  //1 -Sandbox , 2-Production</p>
+<p>const fcmServerKey  = “your_fcm_server_key”        //Your FCM server key<br>
+const pemFilePath  = “your_pem_file_path”             //Pem file path<br>
+const apnsMode = 2                                    //1 -Sandbox , 2-Production</p>
 <p>func main()  {</p>
 <pre><code>fmt.Println(&quot;---------------------------------APNS PUSH START--------------------------------------&quot;)
 
