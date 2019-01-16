@@ -2,7 +2,7 @@ package apns_functions
 
 type Response struct {
 	Code    int         `json:"code"`
-	Error    APNSResponse `json:"error,omitempty"`
+	Error    interface{} `json:"error,omitempty"`
 	ApnsId string `json:"apns_id"`
 	Message    string `json:"message"`
 }
