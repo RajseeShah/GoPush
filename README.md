@@ -2,30 +2,40 @@
 <p>#Your main.go File</p>
 <p>package main</p>
 <p>import (<br>
+“time”<br>
 “fmt”<br>
+“os”<br>
 “encoding/json”<br>
 “goPush/apns_functions”<br>
-“time”<br>
 “goPush/fcm_functions”<br>
 )</p>
-<p>const fcmServerKey  = “your_fcm_server_key”        //Your FCM server key<br>
-const pemFilePath  = “your_pem_file_path”             //Pem file path<br>
-const apnsMode = 2                                    //1 -Sandbox , 2-Production</p>
+<p>const fcmServerKey = “your_fcm_server_key”//Your FCM server key for FCM Push</p>
+<p>const pemFilePath  = “your_pem_file_path”                                        //Pem file path for APNS push through PEM file<br>
+const apnsMode = 2                                                                       //1 -Sandbox , 2-Production</p>
+<p>const p8FilePath  = “your_p8_file_path”                 //p8 file path for APNS push through p8 file<br>
+const apnsKeyId  = “your_key_id”                                                        //key id for APNS push through p8 file<br>
+const teamId  = “your_team_id”                                                          //team id for APNS push through p8 file</p>
 <p>func main()  {</p>
-<pre><code>fmt.Println(&quot;---------------------------------APNS PUSH START--------------------------------------&quot;)
+<pre><code>fmt.Println(&quot;---------------------------------APNS PUSH START (With PEM/P8 FILE)--------------------------------------&quot;)
 
 //Device token of IOS device
-deviceToken := &quot;YOUR_IOS_DEVICE_TOKEN&quot;
+deviceToken := &quot;your_device_token&quot; //&quot;0EB3E37FD53F2669DF40A7E0D1FF75E27445B226EB3D736BCE2D9C7755997541&quot;
 
 
 //Create APNS client
 /*  PARAM               DESCRIPTION                              Type
-    deviceToken      - Device token of IOS device               - string
-    pemFilePath      - path Where your PEM file resides         - string
-    apnsMode         - 1/2 (1 -Sandbox , 2-Production)          - int
- */
-apnsClient,_ := apns_functions.NewApnsClient(deviceToken, pemFilePath, apnsMode)
+    deviceToken      - Device token of IOS device               - string (Mandatory)
+    filePath         - path Where your PEM/p8 file resides      - string (Mandatory)
+    apnsMode         - 1/2 (1 -Sandbox , 2-Production)          - int (Mandatory)
+    teamId           - teamId when using p8 file                - mandaory only when you use p8 file
+    apnsKeyId        - apnsKeyId when using p8 file             - mandaory only when you use p8 file
+*/
+apnsClient,err := apns_functions.NewApnsClient(deviceToken, p8FilePath, apnsMode, teamId, apnsKeyId)
 
+if err!=nil {
+    fmt.Println(err)
+    os.Exit(0)
+}
 
 //Prepare APNS payload data
 apnsPayload := apns_functions.ApnsPayload{}
@@ -47,7 +57,7 @@ apnsPayload.Aps.Badge = 1
 //Set APNS header, only ApnsTopic is mandatory
 apnsHeader := apns_functions.ApnsHeader{
     ApnsPriority:&quot;10&quot;,
-    ApnsTopic:&quot;your_apns_topic&quot;, //Mandatory
+    ApnsTopic: &quot;your_apns_topic&quot;,  //Mandatory
     ApnsExpiration:time.Now(),
 }
 
@@ -73,7 +83,7 @@ fcmClient := fcm_functions.NewFcmClient(fcmServerKey)
 data := new(fcm_functions.FcmPayLoadData)
 
 //If you want to send FCM Push notification to IOS device
-data.Token = &quot;YOUR_IOS_DEVICE_TOKEN&quot;
+data.Token = &quot;your_device_token_of_ios&quot;
 
 //If you want to send FCM Push notification to android devices
 registrationIds := []string{&quot;your_registration_id_1&quot;,&quot;your_registration_id_2&quot;,&quot;your_registration_id_3&quot;}
