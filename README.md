@@ -13,8 +13,8 @@
 <p>const pemFilePath  = “your_pem_file_path”                                        //Pem file path for APNS push through PEM file<br>
 const apnsMode = 2                                                                       //1 -Sandbox , 2-Production</p>
 <p>const p8FilePath  = “your_p8_file_path”                 //p8 file path for APNS push through p8 file<br>
-const apnsKeyId  = “your_key_id” or ""                                                       //key id for APNS push through p8 file<br>
-const teamId  = “your_team_id” or ""                                                        //team id for APNS push through p8 file</p>
+const apnsKeyId  = “your_key_id” or blank string                                                      //key id for APNS push through p8 file<br>
+const teamId  = “your_team_id” or blank string                                                        //team id for APNS push through p8 file</p>
 <p>func main()  {</p>
 <pre><code>fmt.Println(&quot;---------------------------------APNS PUSH START (With PEM/P8 FILE)--------------------------------------&quot;)
 
