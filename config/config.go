@@ -15,4 +15,7 @@ const (
 	ApnsSendBoxEndPointUrl = "https://api.development.push.apple.com"
 	ApnsProductionEndPointUrl = "https://api.push.apple.com"
 
+	//Authorization token configs
+	Algorithm = "ES256"
+
 )

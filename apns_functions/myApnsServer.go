@@ -8,6 +8,7 @@ import (
 	"encoding/json"
 )
 
+//Send push to Ios device using p8/pem file
 func (client *ApnsClient) sendRequestToApnsServer(header *ApnsHeader, data []byte) (*Response, error) {
 
 	requestUrl := fmt.Sprintf("%v/3/device/%v", client.apnsHost, client.deviceToken)
@@ -22,6 +23,13 @@ func (client *ApnsClient) sendRequestToApnsServer(header *ApnsHeader, data []byt
 	}
 
 	request.Header.Add("Content-type", "application/json")
+
+	//Set authorization for sending push using p8 file
+	if client.fileType == 2{
+
+		request.Header.Add("authorization", "bearer "+client.jwtToken)
+	}
+
 	header.set(request.Header)
 
 	response, err := client.httpClient.Do(request)
