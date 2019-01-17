@@ -19,7 +19,7 @@ const teamId  = “your_team_id”                                              
 <pre><code>fmt.Println(&quot;---------------------------------APNS PUSH START (With PEM/P8 FILE)--------------------------------------&quot;)
 
 //Device token of IOS device
-deviceToken := &quot;your_device_token&quot; //&quot;0EB3E37FD53F2669DF40A7E0D1FF75E27445B226EB3D736BCE2D9C7755997541&quot;
+deviceToken := &quot;your_device_token&quot; 
 
 
 //Create APNS client
